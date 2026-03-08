@@ -1,0 +1,176 @@
+<!-- "use client";
+
+import { Sparkles, Zap, Shield, ArrowRight, Play } from "lucide-react";
+
+export default function Hero() {
+  return (
+    <section className="relative z-10 min-h-screen overflow-hidden px-8 mt-12 md:px-16 lg:px-32">
+
+      <div className="relative max-w-7xl mx-auto">
+
+        {/* ── TOP ROW ── */}
+        <div className="flex flex-col lg:flex-row items-start gap-16 pb-14">
+
+          {/* LEFT — headline (60%) */}
+          <div className="lg:w-[58%] text-left">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 border border-black bg-white px-3 py-1.5 mb-6">
+              <span className="bg-black text-white text-[10px] font-bold tracking-widest uppercase px-1.5 py-0.5">
+                Studio
+              </span>
+              <span className="text-black text-xs tracking-wide font-medium">
+                Design · Automatisation · Growth
+              </span>
+            </div>
+
+            <h1
+              className="text-black font-black leading-[1.05] tracking-tight font-display"
+              style={{ fontSize: "clamp(2.6rem, 5vw, 4.8rem)" }}
+            >
+              Votre marque,
+              <br />
+              <span className="text-blue-600">pensée pour marquer.</span>
+            </h1>
+          </div>
+
+          {/* RIGHT — description + services + CTA (40%) */}
+          <div className="lg:w-[42%] lg:pt-[5.5rem] flex flex-col gap-5 text-left">
+
+            <p className="text-zinc-600 text-sm leading-relaxed">
+              De votre logo à vos automatisations, on prend en charge
+              tout ce qui fait tourner et rayonner votre activité en ligne.
+            </p>
+
+            {/* Liste des services */}
+            <ul className="flex flex-col gap-1.5">
+              {[
+                "Identité visuelle & chartes graphiques",
+                "Création de logos & affiches",
+                "Automatisations de workflows",
+                "Community management",
+                "Redesign de sites & landing pages",
+              ].map((service) => (
+                <li key={service} className="flex items-center gap-2 text-xs text-zinc-600">
+                  <span className="w-1 h-1 bg-blue-600 shrink-0" />
+                  {service}
+                </li>
+              ))}
+            </ul>
+
+            <div className="flex items-center gap-3 flex-wrap pt-1">
+              <button className="group flex items-center gap-2 bg-black text-white font-semibold px-5 py-2.5 border-2 border-black hover:bg-white hover:text-black transition-all duration-200 text-sm">
+                Demander un devis
+                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+              </button>
+              <button className="flex items-center gap-2 border border-black text-black font-medium px-4 py-2.5 hover:bg-black hover:text-white transition-all duration-200 text-sm">
+                <Play size={11} className="fill-current" />
+                Nos réalisations
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* ── CARDS ROW ── */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+
+          {/* CARD 1 — Projets livrés */}
+          <div className="relative border-2 border-black bg-white p-6 flex flex-col justify-between min-h-[230px] group hover:bg-zinc-50 transition-colors duration-300">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 border border-black px-2 py-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                <span className="text-black text-xs font-mono tracking-wider">Studio v2.1</span>
+              </div>
+              <Sparkles size={15} className="text-zinc-400 group-hover:text-blue-600 transition-colors" />
+            </div>
+
+            <div>
+              <p className="text-black font-black leading-none font-display" style={{ fontSize: "clamp(3.5rem, 7vw, 5rem)" }}>
+                48
+              </p>
+            </div>
+
+            <div className="flex items-end justify-between gap-2">
+              <div>
+                <p className="text-black font-semibold text-sm mb-0.5">Projets Livrés</p>
+                <p className="text-zinc-500 text-xs leading-snug">Logos, chartes &amp; automatisations</p>
+              </div>
+              <button className="shrink-0 border border-black text-black text-xs px-3 py-1.5 hover:bg-black hover:text-white transition-all">
+                Voir les projets
+              </button>
+            </div>
+
+            <div className="absolute bottom-0 right-0 w-8 h-8 border-l-2 border-t-2 border-blue-600" />
+          </div>
+
+          {/* CARD 2 — Services actifs */}
+          <div className="relative border-2 border-black bg-white p-6 flex flex-col justify-between min-h-[230px] group hover:bg-zinc-50 transition-colors duration-300 overflow-hidden">
+            <div className="absolute right-4 top-1/2 -translate-y-1/2 opacity-[0.05]">
+              <Zap size={110} className="text-black fill-black" />
+            </div>
+
+            <div className="flex items-center justify-between">
+              <p className="text-black text-sm font-semibold tracking-wide">Services Actifs</p>
+              <Zap size={15} className="text-zinc-400 group-hover:text-blue-600 transition-colors" />
+            </div>
+
+            <div>
+              <p className="text-black font-black leading-none font-display" style={{ fontSize: "clamp(3rem, 5.5vw, 4.5rem)" }}>
+                5
+                <span className="text-zinc-400 font-normal text-xl"> offres</span>
+              </p>
+            </div>
+
+            <div>
+              <p className="text-zinc-500 text-xs leading-snug max-w-[210px]">
+                Design · Logo · Automatisation · CM · Refonte web
+              </p>
+            </div>
+
+            <div className="absolute bottom-0 left-0 w-8 h-8 border-r-2 border-t-2 border-blue-600" />
+          </div>
+
+          {/* CARD 3 — Satisfaction client */}
+          <div className="relative border-2 border-black bg-blue-600 p-6 flex flex-col justify-between min-h-[230px] group hover:bg-blue-700 transition-colors duration-300 overflow-hidden">
+            <div
+              className="absolute inset-0 opacity-20"
+              style={{
+                backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.7) 1px, transparent 1px)",
+                backgroundSize: "14px 14px",
+              }}
+            />
+
+            <div className="relative flex items-center justify-between">
+              <p className="text-white text-sm font-semibold tracking-wide">Satisfaction Client</p>
+              <Shield size={15} className="text-blue-200" />
+            </div>
+
+            <div className="relative flex items-end gap-3">
+              <p className="text-white font-black leading-none font-display" style={{ fontSize: "clamp(3.5rem, 7vw, 5rem)" }}>
+                97%
+              </p>
+              <div className="flex items-end gap-1 pb-2">
+                {[40, 60, 35, 75, 55, 85, 100].map((h, i) => (
+                  <div
+                    key={i}
+                    className="w-1.5 bg-white/50 rounded-sm"
+                    style={{ height: `${h * 0.36}px` }}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <div className="relative">
+              <p className="text-blue-100 text-xs leading-snug">
+                Taux de recommandation sur l'ensemble de nos missions
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Bottom accent line */}
+        <div className="mt-3 h-px w-full bg-gradient-to-r from-transparent via-black/20 to-transparent" />
+      </div>
+    </section>
+  );
+} -->

@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Syne+Mono&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Syne', sans-serif;
+  --font-display: 'Syne', sans-serif;
+  --font-mono: 'Syne Mono', monospace;
+}
+
+@layer base {
+  html {
+    font-family: 'Syne', sans-serif;
+  }
+}
