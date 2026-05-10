@@ -1,94 +1,79 @@
-import { Home, Layers, FolderOpen, Mail, ArrowRight, MessageSquare } from "lucide-react";
+// components/Header.tsx
+'use client';
 
-const LIME   = "#bdf522";
-const PURPLE = "#008BFF";
+import { Phone } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import LanguageToggle from '../LanguageToggle';
+import ThemeToggle from '../ThemeToggle';
 
-// const DOT_PATTERN = {
-//   backgroundColor: "#e5e5f7",
-//   backgroundImage: `radial-gradient(#444cf7 0.5px, transparent 0.5px), radial-gradient(#444cf7 0.5px, #e5e5f7 0.5px)`,
-//   backgroundSize: "20px 20px",
-//   backgroundPosition: "0 0, 10px 10px",
-// };
 
-const navItems = [
-  { label: "Accueil",      href: "#accueil",      icon: Home },
-  { label: "Projets",      href: "#projets",      icon: Layers },
-  { label: "Processus",    href: "#processus",    icon: FolderOpen },
-  { label: "Témoignages",  href: "#temoignages",  icon: MessageSquare },
-  { label: "Contact",      href: "#contact",      icon: Mail },
-];
+const PURPLE = '#541ba6';
+const BLUE = '#1b89a6';
+const GOLD = '#a68b1b';
 
 export default function Header() {
+  const { t } = useTranslation();
+
+  const navItems = [
+    { label: t('nav.home'), href: '#accueil' },
+    { label: t('nav.projects'), href: '#projets' },
+    { label: t('nav.process'), href: '#processus' },
+    { label: t('nav.testimonials'), href: '#temoignages' },
+    { label: t('nav.contact'), href: '#contact' },
+  ];
+
   return (
     <header className="relative z-20 px-8 md:px-16 lg:px-32 py-4">
-      <nav className="flex justify-between items-center max-w-7xl mx-auto border-2 border-black bg-white px-6 py-3">
+      <nav className="flex justify-between items-center max-w-7xl mx-auto border-2 border-black bg-white dark:bg-neutral-900 px-6 py-3">
 
         {/* ── Logo ── */}
         <div className="flex items-center gap-2.5">
-          {/* Carré logo avec offset shadow */}
           <div className="relative w-fit">
             <div
               className="absolute top-1 left-1 w-8 h-8 border-2 border-black"
-              style={{ backgroundColor: LIME }}
+              style={{ backgroundColor: GOLD }}
             />
             <div
-              className="relative w-8 h-8 border-2 border-black flex items-center justify-center"
+              className="relative z-10 w-8 h-8 border-2 border-black flex items-center justify-center"
               style={{ backgroundColor: PURPLE }}
             >
               <span className="text-white font-black text-sm">C</span>
             </div>
           </div>
-          <p className="text-lg font-black text-black tracking-tight ml-1">Conique</p>
+          <p className="text-lg font-black text-black dark:text-white tracking-tight ml-1">
+            {t('logo.alt')}
+          </p>
         </div>
 
-        {/* ── Nav links ── */}
-        <div className="hidden md:flex items-center">
-          {navItems.map(({ label, href, icon: Icon }) => (
+        {/* ── Navigation (desktop) ── */}
+        <div className="hidden md:flex items-center gap-1">
+          {navItems.map(({ label, href }) => (
             <a
-              key={label}
+              key={href}
               href={href}
-              className="relative flex items-center gap-2 px-4 py-2.5 text-zinc-600 text-sm font-medium transition-colors duration-150 group hover:text-black"
-              onMouseEnter={e => {
-                const el = e.currentTarget as HTMLElement;
-                el.style.backgroundColor = "transparent";
-                el.style.color = "#000";
-              }}
-              onMouseLeave={e => {
-                const el = e.currentTarget as HTMLElement;
-                el.style.backgroundColor = "transparent";
-                el.style.color = "";
-              }}
+              className="relative px-5 py-2 text-sm font-semibold text-black/70 dark:text-white/70 transition-all duration-200 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 rounded"
             >
-              <Icon
-                size={13}
-                className="text-zinc-400 group-hover:text-black transition-colors duration-150"
-              />
               {label}
             </a>
           ))}
         </div>
 
-        {/* ── CTA ── */}
-        <button
-          className="group flex items-center gap-2 px-5 py-2.5 text-white text-sm font-bold border-2 border-black transition-all duration-200"
-          style={{ backgroundColor: PURPLE }}
-          onMouseEnter={e => {
-            const el = e.currentTarget as HTMLElement;
-            el.style.backgroundColor = "transparent";
-            // el.style.backgroundColor = LIME;
-            el.style.color = "#000";
-            el.style.borderColor = "#000";
-          }}
-          onMouseLeave={e => {
-            const el = e.currentTarget as HTMLElement;
-            el.style.backgroundColor = PURPLE;
-            el.style.color = "#fff";
-            el.style.borderColor = "#000";
-          }}
-        >
-          Démarrer un projet
-          <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform duration-200" />
-        </button>
+        {/* ── Actions droite ── */}
+        <div className="flex items-center gap-2">
+          <LanguageToggle />
+          <ThemeToggle />
+
+          {/* CTA */}
+          <button
+            className="group flex items-center gap-2 px-5 py-2.5 text-white text-sm font-bold border-2 border-black transition-all duration-200 hover:-translate-y-0.5"
+            style={{ backgroundColor: BLUE }}
+            onMouseEnter={e => (e.currentTarget.style.backgroundColor = PURPLE)}
+            onMouseLeave={e => (e.currentTarget.style.backgroundColor = BLUE)}
+          >
+            <Phone size={14} className="group-hover:animate-bounce transition-transform duration-200" />
+            {t('cta.contact')}
+          </button>
+        </div>
 
       </nav>
     </header>

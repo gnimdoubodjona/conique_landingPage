@@ -11,7 +11,7 @@ export default function CTA() {
       <div className="max-w-7xl mx-auto">
 
         {/* ── BLOC PRINCIPAL ── */}
-        <div className="border-2 border-black">
+        <div className="border-2 border-black dark:border-neutral-700">
 
           {/* Top bar colorée */}
           <div
@@ -22,7 +22,7 @@ export default function CTA() {
           <div className="grid grid-cols-1 lg:grid-cols-2">
 
             {/* LEFT — accroche */}
-            <div className="p-10 lg:p-14 border-b-2 lg:border-b-0 lg:border-r-2 border-black flex flex-col justify-between gap-10">
+            <div className="p-10 lg:p-14 border-b-2 lg:border-b-0 lg:border-r-2 border-black dark:border-neutral-700 flex flex-col justify-between gap-10">
 
               <div>
                 <p
@@ -32,7 +32,7 @@ export default function CTA() {
                   On démarre quand vous voulez
                 </p>
                 <h2
-                  className="font-black text-black leading-none tracking-tight"
+                  className="font-black text-black dark:text-white leading-none tracking-tight"
                   style={{ fontSize: "clamp(2.4rem, 4.5vw, 4rem)" }}
                 >
                   Un projet en tête ?<br />
@@ -41,7 +41,7 @@ export default function CTA() {
               </div>
 
               {/* Stats rapides */}
-              <div className="grid grid-cols-3 gap-0 border-2 border-black">
+              <div className="grid grid-cols-3 gap-0 border-2 border-black dark:border-neutral-700">
                 {[
                   { value: "48", label: "projets livrés" },
                   { value: "4 sem.", label: "délai moyen" },
@@ -49,10 +49,10 @@ export default function CTA() {
                 ].map((s, i) => (
                   <div
                     key={i}
-                    className={`p-4 flex flex-col gap-1 ${i < 2 ? "border-r-2 border-black" : ""}`}
+                    className={`p-4 flex flex-col gap-1 ${i < 2 ? "border-r-2 border-black dark:border-neutral-700" : ""}`}
                   >
-                    <span className="font-black text-2xl leading-none text-black">{s.value}</span>
-                    <span className="text-[10px] text-zinc-400 font-medium leading-tight">{s.label}</span>
+                    <span className="font-black text-2xl leading-none text-black dark:text-white">{s.value}</span>
+                    <span className="text-[10px] text-zinc-400 dark:text-zinc-500 font-medium leading-tight">{s.label}</span>
                   </div>
                 ))}
               </div>
@@ -62,7 +62,7 @@ export default function CTA() {
             {/* RIGHT — actions */}
             <div className="p-10 lg:p-14 flex flex-col justify-between gap-8">
 
-              <p className="text-zinc-500 text-base leading-relaxed max-w-sm">
+              <p className="text-zinc-500 dark:text-zinc-400 text-base leading-relaxed max-w-sm">
                 Que ce soit pour une identité visuelle, un redesign web, une stratégie de contenu ou des automatisations — on est là.
               </p>
 
@@ -92,14 +92,14 @@ export default function CTA() {
               </div>
 
               {/* Disponibilité */}
-              <div className="flex items-center gap-3 border-t-2 border-black pt-6">
+              <div className="flex items-center gap-3 border-t-2 border-black dark:border-neutral-700 pt-6">
                 <div
                   className="w-2.5 h-2.5 border-2 border-black shrink-0"
                   style={{ backgroundColor: LIME }}
                 />
-                <p className="text-zinc-500 text-xs font-medium">
+                <p className="text-zinc-500 dark:text-zinc-400 text-xs font-medium">
                   Disponible pour de nouveaux projets —{" "}
-                  <span className="font-black text-black">réponse sous 24h garantie</span>
+                  <span className="font-black text-black dark:text-white">réponse sous 24h garantie</span>
                 </p>
               </div>
 
@@ -108,7 +108,7 @@ export default function CTA() {
         </div>
 
         {/* ── FOOTER STRIP ── */}
-        <div className="border-2 border-t-0 border-black flex flex-col md:flex-row items-center justify-between px-6 py-4 gap-2">
+        <div className="border-2 border-t-0 border-black dark:border-neutral-700 flex flex-col md:flex-row items-center justify-between px-6 py-4 gap-2">
           <div className="flex items-center gap-2.5">
             <div
               className="w-7 h-7 border-2 border-black flex items-center justify-center"
@@ -116,11 +116,11 @@ export default function CTA() {
             >
               <span className="text-white font-black text-xs">C</span>
             </div>
-            <span className="font-black text-black text-sm tracking-tight">Conique</span>
-            <span className="text-zinc-300 text-sm">·</span>
-            <span className="text-zinc-400 text-xs font-medium">Design & Growth Studio</span>
+            <span className="font-black text-black dark:text-white text-sm tracking-tight">Conique</span>
+            <span className="text-zinc-300 dark:text-neutral-600 text-sm">·</span>
+            <span className="text-zinc-400 dark:text-zinc-500 text-xs font-medium">Design & Growth Studio</span>
           </div>
-          <p className="text-zinc-400 text-xs font-medium">© 2024 Conique. Tous droits réservés.</p>
+          <p className="text-zinc-400 dark:text-zinc-500 text-xs font-medium">© 2024 Conique. Tous droits réservés.</p>
         </div>
 
       </div>

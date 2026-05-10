@@ -73,8 +73,8 @@ function ProjectCard({
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className={`relative flex flex-col cursor-pointer transition-colors duration-200
-        ${!isLast ? "border-b-2 md:border-b-0 md:border-r-2 border-black" : ""}
-        ${hovered ? "bg-zinc-50" : "bg-white"}
+        ${!isLast ? "border-b-2 md:border-b-0 md:border-r-2 border-black dark:border-neutral-700" : ""}
+        ${hovered ? "bg-zinc-50 dark:bg-neutral-800" : "bg-white dark:bg-neutral-900"}
       `}
     >
       {/* ── VISUAL BLOCK ── */}
@@ -157,17 +157,17 @@ function ProjectCard({
         </span>
 
         {/* Client */}
-        <h3 className="font-black text-xl text-black leading-tight">{project.client}</h3>
+        <h3 className="font-black text-xl text-black dark:text-white leading-tight">{project.client}</h3>
 
         {/* Description */}
-        <p className="text-zinc-500 text-sm leading-relaxed">{project.description}</p>
+        <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed">{project.description}</p>
 
         {/* Stat */}
-        <div className="flex items-baseline gap-2 border-t-2 border-black pt-3 mt-auto">
+        <div className="flex items-baseline gap-2 border-t-2 border-black dark:border-neutral-700 pt-3 mt-auto">
           <span className="font-black text-3xl leading-none" style={{ color: project.color }}>
             {project.stat}
           </span>
-          <span className="text-[11px] text-zinc-400 font-medium">{project.statLabel}</span>
+          <span className="text-[11px] text-zinc-400 dark:text-zinc-500 font-medium">{project.statLabel}</span>
         </div>
       </div>
     </div>
@@ -176,18 +176,18 @@ function ProjectCard({
 
 export default function Portfolio() {
   return (
-    <section className=" border-black px-8 md:px-16 lg:px-32 py-20" style={{ backgroundColor: "#f8ffe6" }}>
+    <section className="border-black px-8 md:px-16 lg:px-32 py-20 bg-[#f8ffe6] dark:bg-neutral-950">
       <div className="max-w-7xl mx-auto">
 
         {/* ── HEADER ── */}
         <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-8 mb-16">
           <div className="flex-1">
-            <h2 className="font-black leading-none tracking-tight text-black text-5xl lg:text-6xl">
+            <h2 className="font-black leading-none tracking-tight text-black dark:text-white text-5xl lg:text-6xl">
               Nos Réalisations
             </h2>
           </div>
           <div className="flex-1 lg:pt-4 flex flex-col items-start lg:items-end gap-5">
-            <p className="text-zinc-500 text-base leading-relaxed max-w-xs lg:text-right">
+            <p className="text-zinc-500 dark:text-zinc-400 text-base leading-relaxed max-w-xs lg:text-right">
               Identité visuelle · Community management · Logo & Affiches ·
               Design d'application · Automatisation.
             </p>
@@ -202,7 +202,7 @@ export default function Portfolio() {
         </div>
 
         {/* ── GRID ── */}
-        <div className="grid grid-cols-1 md:grid-cols-3 border-2 border-black">
+        <div className="grid grid-cols-1 md:grid-cols-3 border-2 border-black dark:border-neutral-700">
           {projects.map((project, i) => (
             <ProjectCard
               key={project.id}
@@ -213,9 +213,9 @@ export default function Portfolio() {
         </div>
 
         {/* ── BOTTOM BAR ── */}
-        <div className="border-2 border-t-0 border-black flex flex-col md:flex-row items-center justify-between px-6 py-4 gap-4">
-          <p className="text-sm font-medium text-zinc-500">
-            <span className="font-black text-black text-xl mr-2">48</span>
+        <div className="border-2 border-t-0 border-black dark:border-neutral-700 flex flex-col md:flex-row items-center justify-between px-6 py-4 gap-4">
+          <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400">
+            <span className="font-black text-black dark:text-white text-xl mr-2">48</span>
             projets livrés · clients satisfaits
           </p>
           <button
