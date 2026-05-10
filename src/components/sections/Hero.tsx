@@ -14,6 +14,7 @@ import {
   Users,
   Smartphone,
 } from "lucide-react";
+import { useTheme } from "next-themes";
 import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -30,6 +31,8 @@ const services = [
 export default function Hero() {
   const { t } = useTranslation();
   const countersRef = useRef<(HTMLSpanElement | null)[]>([]);
+  const { theme, setTheme } = useTheme();
+console.log("Thème actuel :", theme);
 
   useEffect(() => {
     // Animation simple pour les compteurs
