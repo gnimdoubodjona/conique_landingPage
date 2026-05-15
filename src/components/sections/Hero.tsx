@@ -32,7 +32,7 @@ export default function Hero() {
   const { t } = useTranslation();
   const countersRef = useRef<(HTMLSpanElement | null)[]>([]);
   const { theme, setTheme } = useTheme();
-console.log("Thème actuel :", theme);
+  console.log("Thème actuel :", theme);
 
   useEffect(() => {
     // Animation simple pour les compteurs
@@ -61,8 +61,80 @@ console.log("Thème actuel :", theme);
   }, []);
 
   return (
-    <section className="relative z-10 min-h-screen overflow-hidden px-8 mt-3 md:px-16 lg:px-32">
-      <div className="relative max-w-7xl mx-auto">
+
+
+    <section className="relative z-10 min-h-screen overflow-hidden px-4 sm:px-6 xl:px-12 mt-3  ">
+
+      {/* Fond bleu + bordures style Botwise */}
+      <div
+        className="absolute left-1/2 -translate-x-1/2 w-screen overflow-hidden"
+        style={{
+          top: "0px",
+          bottom: "-4rem",
+          backgroundColor: PURPLE,
+
+          zIndex: -1,
+        }}
+      >
+        {/* Gradient overlay */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: `linear-gradient(
+        135deg,
+        rgba(0,139,255,0.5) 0%,
+        transparent 60%,
+        rgba(189,245,34,0.12) 100%
+      )`,
+          }}
+        />
+
+
+        {/* BORDURE GAUCHE */}
+        {/* ========================= */}
+        <div
+          className="
+      absolute
+      top-9
+      left-0
+      w-[150px]
+      h-[900px]
+      bg-[#f3f1eb]
+      rounded-tr-[85px]
+      z-20
+      border-r
+      border-b
+      border-black/5
+    "
+        />
+
+        {/* Ligne verticale gauche */}
+        <div className="absolute left-[150px] top-0 bottom-0 w-px bg-white/10 z-10 " />
+
+        {/* ========================= */}
+        {/* BORDURE DROITE */}
+        {/* ========================= */}
+        <div
+          className="
+        absolute
+      top-9
+      right-0
+      w-[150px]
+      h-[900px]
+      bg-[#f3f1eb]
+      rounded-tl-[90px]
+      z-20
+      border-l
+      border-t
+      border-black/5
+    "
+        />
+
+        {/* Ligne verticale droite */}
+        <div className="absolute right-[150px] top-0 bottom-0 w-px bg-white/10 z-10  " />
+      </div>
+
+      <div className="relative max-w-screen-2xl mx-auto">
         {/* ── TOP ROW ── */}
         <div className="flex flex-col lg:flex-row justify-between items-start gap-10 pb-14">
           {/* LEFT — headline */}
@@ -179,7 +251,7 @@ console.log("Thème actuel :", theme);
         {/* ── CARDS SECTION avec fond bleu qui commence plus bas ── */}
         <div className="relative">
           {/* Les cards (au-dessus) */}
-          <div className="relative grid grid-cols-1 md:grid-cols-12 gap-4 max-w-7xl mx-auto mb-8">
+          <div className="relative grid grid-cols-1 md:grid-cols-12 gap-4 mb-8">
             {/* CARD 1 — Design UI/UX & Identité */}
             <div className="md:col-span-5">
               <div
@@ -414,26 +486,13 @@ console.log("Thème actuel :", theme);
           </div>
 
           {/* Fond bleu qui commence APRÈS les cards */}
-          <div
-            className="absolute left-1/2 -translate-x-1/2 w-screen"
-            style={{
-              top: "40px",
-              bottom: "-4rem",
-              backgroundColor: PURPLE,
-              backgroundImage: `radial-gradient(circle, rgba(255,255,255,0.15) 1.5px, transparent 1.5px)`,
-              backgroundSize: "24px 24px",
-              zIndex: -1,
-            }}
-          >
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background: `linear-gradient(135deg, rgba(0,139,255,0.5) 0%, transparent 60%, rgba(189,245,34,0.12) 100%)`,
-              }}
-            />
-          </div>
+
+
+
+
         </div>
       </div>
     </section>
   );
 }
+
