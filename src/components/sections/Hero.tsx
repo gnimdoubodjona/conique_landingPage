@@ -63,7 +63,7 @@ export default function Hero() {
   return (
 
 
-    <section className="relative z-10 min-h-screen overflow-hidden px-4 sm:px-6 xl:px-12 mt-3  ">
+    <section className="relative z-10 min-h-screen overflow-hidden px-4 sm:px-6 xl:px-12  ">
 
       {/* Fond bleu + bordures style Botwise */}
       <div

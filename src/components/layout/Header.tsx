@@ -28,8 +28,9 @@ export default function Header() {
   ];
 
   return (
-    <header className="relative z-20 px-4 sm:px-6 xl:px-12 py-4 bg-white">
-      <nav className="max-w-screen-2xl mx-auto border-2 border-black bg-white px-4 sm:px-6 py-3">
+    <header className="relative z-20 px-4 sm:px-6 xl:px-12 bg-white">
+      <div className="absolute left-[140px] top-0 bottom-0 w-px bg-gray-200 z-10 " />
+      <nav className="max-w-screen-2xl mx-auto  bg-white px-4 sm:px-6 py-3">
 
         {/* ── Ligne principale ── */}
         <div className="flex justify-between items-center">
@@ -127,6 +128,8 @@ export default function Header() {
             </button>
           </div>
         )}
+
+        <div className="absolute right-[140px] top-0 bottom-0 w-px bg-gray-200 z-10 " />
 
       </nav>
     </header>

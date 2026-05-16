@@ -11,20 +11,15 @@ interface LayoutProps {
 
 export default function Layout({ children, hero }: LayoutProps) {
   return (
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="light"
-      enableSystem
-      storageKey="conique-theme"
-    >
+
       <I18nProvider>
-        <div className="relative min-h-screen bg-white dark:bg-neutral-950 flex flex-col transition-colors duration-300">
+        <div className="relative min-h-screen bg-white flex flex-col transition-colors duration-300">
           <Header />
           {hero}
           <main className="relative flex-grow">{children}</main>
           <Footer />
         </div>
       </I18nProvider>
-    </ThemeProvider>
+   
   );
 }
