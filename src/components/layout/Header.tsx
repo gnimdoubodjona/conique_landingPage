@@ -1,13 +1,12 @@
 'use client';
 
 import { Phone, Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import LanguageToggle from '../LanguageToggle';
 
 const PURPLE = '#541ba6';
 const BLUE = '#1b89a6';
-const GOLD = '#a68b1b';
 
 interface NavItem {
   label: string;
@@ -18,6 +17,15 @@ export default function Header() {
   const { t } = useTranslation();
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [hoveredNav, setHoveredNav] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState<boolean>(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navItems: NavItem[] = [
     { label: t('nav.home'), href: '#accueil' },
@@ -28,35 +36,46 @@ export default function Header() {
   ];
 
   return (
-    <header className="relative z-20 px-4 sm:px-6 xl:px-12 bg-white">
-      <div className="absolute left-[140px] top-0 bottom-0 w-px bg-gray-200 z-10 " />
-      <nav className="max-w-screen-2xl mx-auto  bg-white px-4 sm:px-6 py-3">
+    <header className="sticky top-0 z-50">
 
+      {/* Lignes verticales — visibles uniquement quand pas scrollé */}
+      <div
+        className="absolute left-[60px] top-0 bottom-0 w-px z-10 transition-opacity duration-300"
+        style={{ opacity: scrolled ? 0 : 1, backgroundColor: '#e5e7eb' }}
+      />
+      <div
+        className="absolute right-[60px] top-0 bottom-0 w-px z-10 transition-opacity duration-300"
+        style={{ opacity: scrolled ? 0 : 1, backgroundColor: '#e5e7eb' }}
+      />
+
+      {/* Nav — glass flottante au scroll */}
+      <nav
+        className="px-4 sm:px-6 py-3 transition-all duration-300"
+        style={{
+          margin: scrolled ? '8px 16px 0' : '0 61px',
+          backgroundColor: scrolled ? 'rgba(255,255,255,0.80)' : '#ffffff',
+          backdropFilter: scrolled ? 'blur(14px)' : 'none',
+          WebkitBackdropFilter: scrolled ? 'blur(14px)' : 'none',
+          borderRadius: scrolled ? '12px' : '0px',
+          boxShadow: scrolled ? '0 4px 24px rgba(0,0,0,0.10)' : 'none',
+          border: scrolled ? '1px solid rgba(0,0,0,0.08)' : '1px solid transparent',
+        }}
+      >
         {/* ── Ligne principale ── */}
         <div className="flex justify-between items-center">
 
           {/* ── Logo ── */}
-          <div className="flex items-center gap-2.5">
-            <div className="relative w-fit">
-              <div
-                className="absolute top-1 left-1 w-8 h-8 border-2 border-black"
-                style={{ backgroundColor: GOLD }}
-              />
-              <div
-                className="relative z-10 w-8 h-8 border-2 border-black flex items-center justify-center"
-                style={{ backgroundColor: PURPLE }}
-              >
-                <span className="text-white font-black text-sm">C</span>
-              </div>
-            </div>
-            <p className="text-lg font-black text-black tracking-tight ml-1">
-              {t('logo.alt')}
-            </p>
+          <div className="flex items-center">
+            <img
+              src="/images/coniqueLogo1.png"
+              alt={t('logo.alt')}
+              className="h-10 w-auto object-contain"
+            />
           </div>
 
           {/* ── Navigation (desktop) ── */}
           <div className="hidden md:flex items-center gap-1">
-            {navItems.map(({ label, href }) => (
+            {navItems.map(({ label, href }: NavItem) => (
               <a
                 key={href}
                 href={href}
@@ -81,11 +100,9 @@ export default function Header() {
 
             {/* CTA — masqué sur mobile */}
             <button
-              className="hidden sm:flex items-center gap-2 px-5 py-2.5 text-white text-sm font-bold border-2 border-black transition-all duration-200 hover:-translate-y-0.5"
+              className="hidden sm:flex items-center gap-2 px-5 py-2.5 text-white text-sm font-bold rounded-lg transition-all duration-200 hover:-translate-y-0.5"
               style={{ backgroundColor: BLUE }}
-              onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
-                e.currentTarget.style.backgroundColor = PURPLE;
-              }}
+            
               onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
                 e.currentTarget.style.backgroundColor = BLUE;
               }}
@@ -108,7 +125,7 @@ export default function Header() {
         {/* ── Menu mobile déroulant ── */}
         {menuOpen && (
           <div className="md:hidden border-t-2 border-black mt-3 pt-3 flex flex-col gap-1">
-            {navItems.map(({ label, href }) => (
+            {navItems.map(({ label, href }: NavItem) => (
               <a
                 key={href}
                 href={href}
@@ -128,9 +145,6 @@ export default function Header() {
             </button>
           </div>
         )}
-
-        <div className="absolute right-[140px] top-0 bottom-0 w-px bg-gray-200 z-10 " />
-
       </nav>
     </header>
   );
