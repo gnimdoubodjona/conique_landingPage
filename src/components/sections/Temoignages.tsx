@@ -49,7 +49,7 @@ export default function Temoignages() {
   const [hovered, setHovered] = useState<string | null>(null);
 
   return (
-    <section className="border-black px-8 md:px-16 lg:px-32 py-24 bg-[#f8ffe6] dark:bg-neutral-950">
+    <section className="border-black px-8 md:px-16 lg:px-32 py-24 bg-white">
       <div className="max-w-7xl mx-auto">
 
         {/* ── HEADER ── */}
