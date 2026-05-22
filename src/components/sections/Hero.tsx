@@ -281,22 +281,7 @@ export default function Hero() {
               </p>
 
               <div className="mt-auto flex flex-col gap-2.5">
-                <div className="flex items-center gap-2">
-                  <div
-                    className="w-8 h-8 rounded-full border-2 border-black flex items-center justify-center flex-shrink-0"
-                    style={{ backgroundColor: GOLD }}
-                  >
-                    <span className="text-white text-[18px] font-black">?</span>
-                  </div>
-                  <div>
-                    <p className="text-[13px] font-black text-black">
-                      Et si on automatisait l'ennui ?
-                    </p>
-                    <p className="text-[11px] text-zinc-400">
-                      Pour que vous restiez créatif.
-                    </p>
-                  </div>
-                </div>
+                
 
                 <button
                   className="mt-1 w-full flex items-center justify-center gap-1.5 text-white text-[14px] font-black px-3 py-2 border-2 hover:opacity-80 transition-opacity"
