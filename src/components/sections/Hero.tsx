@@ -190,7 +190,7 @@ export default function Hero() {
                   <Code2 size={16} className="text-white" />
                 </div>
                 <div>
-                  <p className="text-[24px] font-black text-black">Dev Web & Mobile</p>
+                  <p className="text-[24px] font-black text-black">Dev Web&Mobile</p>
                 </div>
               </div>
 
