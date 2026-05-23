@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import LanguageToggle from '../LanguageToggle';
 
-const PURPLE = '#541ba6';
+
 const BLUE = '#1b89a6';
 
 interface NavItem {

@@ -12,7 +12,7 @@ import {
 const PURPLE = "#541ba6";
 const BLUE = "#1b89a6";
 const GOLD = "#a68b1b";
-const HERO_BG = "#0e6d87";
+
 
 const projects = [
   {
