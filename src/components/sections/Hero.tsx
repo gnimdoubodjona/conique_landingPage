@@ -45,9 +45,9 @@ export default function Hero() {
             background: `linear-gradient(135deg, rgba(84,27,166,0.25) 0%, transparent 55%, rgba(166,139,27,0.08) 100%)`,
           }}
         />
-        <div className="hidden sm:block absolute top-9 left-0 w-[68px] h-full bg-[#f3f1eb] rounded-tr-[85px] z-20 border-r border-b border-black/5" />
+        <div className="hidden sm:block absolute top-9 left-0 w-[68px] h-full bg-white rounded-tr-[85px] z-20 border-r border-b border-black/5" />
         <div className="hidden sm:block absolute left-[68px] top-0 bottom-0 w-px bg-white/10 z-10" />
-        <div className="hidden sm:block absolute top-9 right-0 w-[68px] h-full bg-[#f3f1eb] rounded-tl-[90px] z-20 border-l border-t border-black/5" />
+        <div className="hidden sm:block absolute top-9 right-0 w-[68px] h-full bg-white rounded-tl-[90px] z-20 border-l border-t border-black/5" />
         <div className="hidden sm:block absolute right-[68px] top-0 bottom-0 w-px bg-white/10 z-10" />
       </div>
 

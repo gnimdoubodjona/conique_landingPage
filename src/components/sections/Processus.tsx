@@ -7,8 +7,9 @@ import {
   Rocket,
 } from "lucide-react";
 
-const LIME   = "#bdf522";
-const PURPLE = "#008BFF";
+const PURPLE = "#541ba6";
+const BLUE = "#1b89a6";
+const GOLD = "#a68b1b";
 
 const steps = [
   {
@@ -17,7 +18,7 @@ const steps = [
     title: "Brief & Discovery",
     description:
       "On prend le temps de comprendre votre activité, vos objectifs et votre cible. Chaque projet commence par une écoute attentive.",
-    color: PURPLE,
+    color: BLUE,
   },
   {
     number: "02",
@@ -33,7 +34,7 @@ const steps = [
     title: "Création & Itération",
     description:
       "On conçoit, on affine, on itère. Vous validez à chaque étape. Le résultat final est exactement ce que vous aviez imaginé — en mieux.",
-    color: PURPLE,
+    color: GOLD,
   },
   {
     number: "04",
@@ -47,87 +48,123 @@ const steps = [
 
 export default function Processus() {
   return (
-    <section className="bg-white dark:bg-neutral-950 px-8 md:px-16 lg:px-32 py-24">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative bg-white py-24 overflow-hidden">
 
-        {/* ── HEADER ── */}
-        <div className="mb-20 max-w-2xl">
-          {/* <p
-            className="text-xs font-black tracking-[0.3em] uppercase mb-4"
-            style={{ color: PURPLE }}
-          >
-            Comment on travaille
-          </p> */}
-          <h2 className="font-black text-black dark:text-white leading-none tracking-tight" style={{ fontSize: "clamp(2.6rem, 5vw, 4.5rem)" }}>
-            Un process qui délivre.
-          </h2>
-        </div>
+      {/* ── Lignes verticales — alignées avec hero, nav et portfolio ── */}
+      <div className="absolute left-[60px] top-0 bottom-0 w-px bg-gray-200 z-10" />
+      <div className="absolute right-[60px] top-0 bottom-0 w-px bg-gray-200 z-10" />
 
-        {/* ── STEPS ── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border-2 border-black dark:border-neutral-700">
-          {steps.map((step, i) => {
-            const Icon = step.icon;
-            const isLast = i === steps.length - 1;
+      {/* ── Ligne horizontale haut — pleine largeur ── */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gray-200 z-10" />
 
-            return (
-              <div
-                key={step.number}
-                className={`relative flex flex-col p-8 bg-white dark:bg-neutral-900 group cursor-default transition-colors duration-200 hover:bg-zinc-50 dark:hover:bg-neutral-800
-                  ${!isLast ? "border-b-2 lg:border-b-0 lg:border-r-2 border-black dark:border-neutral-700" : ""}
-                `}
+      {/* ── Ligne horizontale bas — pleine largeur ── */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gray-200 z-10" />
+
+      <div className="relative z-10 px-4 sm:px-[84px]">
+        <div className="max-w-screen-2xl mx-auto">
+
+          {/* ── HEADER ── */}
+          <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-8 mb-16">
+            <div className="flex-1">
+              <h2
+                className="font-black text-black leading-none tracking-tight"
+                style={{ fontSize: "clamp(2.6rem, 5vw, 4.5rem)" }}
               >
-                {/* ── Icône style "bordered box" comme dans l'image ── */}
-                <div className="mb-8 relative w-fit">
-                  {/* Décalage d'ombre brutalist */}
-                  <div
-                    className="absolute top-1.5 left-1.5 w-12 h-12 border-2 border-black"
-                    style={{ backgroundColor: LIME }}
-                  />
-                  <div className="relative w-12 h-12 border-2 border-black bg-white flex items-center justify-center">
-                    <Icon size={20} strokeWidth={2} style={{ color: PURPLE }} />
-                  </div>
-                </div>
-
-                {/* Numéro */}
-                <p
-                  className="text-[11px] font-black tracking-[0.2em] uppercase mb-3"
-                  style={{ color: PURPLE, WebkitTextStroke: `1px ${PURPLE}`,}}
-                >
-                  Étape {step.number}
-                </p>
-
-                {/* Titre */}
-                <h3 className="font-black text-black dark:text-white text-lg leading-tight mb-3">
-                  {step.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed flex-1">
-                  {step.description}
-                </p>
-
-                {/* Accent bottom bar — apparaît au hover */}
+                Un process qui délivre.
+              </h2>
+            </div>
+            <div className="flex-1 lg:pt-4 flex flex-col items-start lg:items-end gap-5">
+              <p className="text-zinc-500 text-base leading-relaxed max-w-xs lg:text-right">
+                Brief · Stratégie · Création · Livraison —
+                chaque étape est pensée pour que votre projet arrive exactement où il doit être.
+              </p>
+              <div className="flex items-center gap-2">
                 <div
-                  className="absolute bottom-0 left-0 w-0 h-[3px] group-hover:w-full transition-all duration-300"
-                  style={{ backgroundColor: LIME }}
+                  className="w-2 h-2 rounded-full border-2 border-black"
+                  style={{ backgroundColor: GOLD }}
                 />
+                <span className="text-zinc-500 text-sm font-medium">
+                  Disponible pour de nouveaux projets
+                </span>
               </div>
-            );
-          })}
-        </div>
-
-        {/* ── BOTTOM STATEMENT ── */}
-        <div className="border-2 border-t-0 border-black dark:border-neutral-700 flex flex-col md:flex-row items-center justify-between px-8 py-6 gap-4">
-          <p className="font-black text-black dark:text-white text-xl leading-tight max-w-sm">
-            De l'idée au résultat —<br />
-            <span style={{ color: PURPLE }}>en moyenne 2 à 4 semaines.</span>
-          </p>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: LIME, outline: `2px solid #000` }} />
-            <span className="text-zinc-500 dark:text-zinc-400 text-sm font-medium">Disponible pour de nouveaux projets</span>
+            </div>
           </div>
-        </div>
 
+          {/* ── STEPS ── */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border border-black/10">
+            {steps.map((step, i) => {
+              const Icon = step.icon;
+              const isLast = i === steps.length - 1;
+
+              return (
+                <div
+                  key={step.number}
+                  className={`relative flex flex-col p-8 bg-white group cursor-default transition-colors duration-200 hover:bg-zinc-50
+                    ${!isLast ? "border-b lg:border-b-0 lg:border-r border-black/10" : ""}
+                  `}
+                >
+                  {/* Icône brutalist */}
+                  <div className="mb-8 relative w-fit">
+                    <div
+                      className="absolute top-1.5 left-1.5 w-12 h-12 border border-black/15"
+                      style={{ backgroundColor: step.color, opacity: 0.15 }}
+                    />
+                    <div
+                      className="relative w-12 h-12 border border-black/20 bg-white flex items-center justify-center"
+                    >
+                      <Icon size={20} strokeWidth={2} style={{ color: step.color }} />
+                    </div>
+                  </div>
+
+                  {/* Numéro */}
+                  <p
+                    className="text-[11px] font-black tracking-[0.2em] uppercase mb-3"
+                    style={{ color: step.color }}
+                  >
+                    Étape {step.number}
+                  </p>
+
+                  {/* Titre */}
+                  <h3 className="font-black text-black text-lg leading-tight mb-3">
+                    {step.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-zinc-500 text-sm leading-relaxed flex-1">
+                    {step.description}
+                  </p>
+
+                  {/* Accent bottom — hover */}
+                  <div
+                    className="absolute bottom-0 left-0 w-0 h-[3px] group-hover:w-full transition-all duration-300"
+                    style={{ backgroundColor: step.color }}
+                  />
+                </div>
+              );
+            })}
+          </div>
+
+          {/* ── BOTTOM BAR ── */}
+          <div className="border border-t-0 border-black/10 flex flex-col md:flex-row items-center justify-between px-6 py-4 gap-4">
+            <p className="font-black text-black text-xl leading-tight max-w-sm">
+              De l'idée au résultat —{" "}
+              <span style={{ color: BLUE }}>en moyenne 2 à 4 semaines.</span>
+            </p>
+            <button
+              className="group flex items-center gap-2 font-bold border border-black/20 px-5 py-2 text-sm transition-all duration-200 hover:-translate-y-0.5 text-white"
+              style={{ backgroundColor: BLUE }}
+              onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
+                e.currentTarget.style.backgroundColor = PURPLE;
+              }}
+              onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
+                e.currentTarget.style.backgroundColor = BLUE;
+              }}
+            >
+              Démarrer un projet
+            </button>
+          </div>
+
+        </div>
       </div>
     </section>
   );
