@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ArrowRight, MessageCircle } from "lucide-react";
 
 const PURPLE = "#541ba6";
@@ -10,47 +11,45 @@ const GOLD   = "#a68b1b";
 const testimonials = [
   {
     id: "01",
-    name: "Sophie Marchand",
-    role: "Fondatrice · Maison Léa",
-    category: "Identité Visuelle",
-    quote:
-      "Conique a capturé l'essence de notre marque dès le premier brief. L'identité livrée était épurée, forte, mémorable. On a eu des retours clients dès le premier jour.",
+    nameKey: "testimonials.item1_name",
+    roleKey: "testimonials.item1_role",
+    categoryKey: "testimonials.item1_category",
+    quoteKey: "testimonials.item1_quote",
     result: "+40%",
-    resultLabel: "reconnaissance marque",
+    resultLabelKey: "testimonials.item1_resultLabel",
     color: GOLD,
     shadowColor: PURPLE,
   },
   {
     id: "02",
-    name: "Thomas Rey",
-    role: "CEO · Korner Studio",
-    category: "Redesign Web",
-    quote:
-      "Le redesign a complètement transformé notre image. En deux semaines, notre taux de contact avait plus que doublé. Les délais tenus, le résultat au-delà de nos attentes.",
+    nameKey: "testimonials.item2_name",
+    roleKey: "testimonials.item2_role",
+    categoryKey: "testimonials.item2_category",
+    quoteKey: "testimonials.item2_quote",
     result: "×2.4",
-    resultLabel: "taux de contact",
+    resultLabelKey: "testimonials.item2_resultLabel",
     color: BLUE,
     shadowColor: GOLD,
   },
   {
     id: "03",
-    name: "Kévin Diallo",
-    role: "Co-fondateur · FoodRush",
-    category: "Community Management",
-    quote:
-      "En 4 mois, on est passé de zéro présence à 12k abonnés engagés. Conique ne livre pas juste du contenu — ils construisent une vraie audience.",
+    nameKey: "testimonials.item3_name",
+    roleKey: "testimonials.item3_role",
+    categoryKey: "testimonials.item3_category",
+    quoteKey: "testimonials.item3_quote",
     result: "+12k",
-    resultLabel: "abonnés en 4 mois",
+    resultLabelKey: "testimonials.item3_resultLabel",
     color: PURPLE,
     shadowColor: BLUE,
   },
 ];
 
 export default function Temoignages() {
+  const { t } = useTranslation();
   const [hovered, setHovered] = useState<string | null>(null);
 
   return (
-    <section className="relative bg-white py-24 overflow-hidden">
+    <section id="temoignages" className="relative bg-white py-24 overflow-hidden">
 
       {/* ── Lignes verticales ── */}
       <div className="absolute left-[60px] top-0 bottom-0 w-px bg-gray-200 z-10" />
@@ -70,31 +69,30 @@ export default function Temoignages() {
                 className="text-[10px] font-black tracking-[0.3em] uppercase mb-4"
                 style={{ color: BLUE }}
               >
-                Ce qu'ils disent
+                {t("testimonials.badge")}
               </p>
               <h2
-                className="font-black text-black leading-none tracking-tight"
+                className="font-black text-black leading-none tracking-tight whitespace-pre-line"
                 style={{ fontSize: "clamp(2.6rem, 5vw, 4.5rem)" }}
               >
-                Ils nous font<br />confiance.
+                {t("testimonials.title")}
               </h2>
             </div>
             <p className="text-zinc-500 text-base max-w-xs lg:text-right leading-relaxed">
-              Des clients satisfaits, des résultats mesurables,
-              des collaborations qui durent.
+              {t("testimonials.desc")}
             </p>
           </div>
 
           {/* ── CARDS ── */}
           <div className="grid grid-cols-1 md:grid-cols-3 border border-black/10">
-            {testimonials.map((t, i) => {
+            {testimonials.map((testi, i) => {
               const isLast    = i === testimonials.length - 1;
-              const isHovered = hovered === t.id;
+              const isHovered = hovered === testi.id;
 
               return (
                 <div
-                  key={t.id}
-                  onMouseEnter={() => setHovered(t.id)}
+                  key={testi.id}
+                  onMouseEnter={() => setHovered(testi.id)}
                   onMouseLeave={() => setHovered(null)}
                   className={`relative flex flex-col p-7 transition-colors duration-200 cursor-default overflow-hidden
                     ${!isLast ? "border-b md:border-b-0 md:border-r border-black/10" : ""}
@@ -105,18 +103,18 @@ export default function Temoignages() {
                   <div className="mb-7 relative w-fit">
                     <div
                       className="absolute top-1.5 left-1.5 w-10 h-10 border border-black/15 transition-colors duration-300"
-                      style={{ backgroundColor: isHovered ? t.shadowColor : t.shadowColor, opacity: isHovered ? 1 : 0.3 }}
+                      style={{ backgroundColor: testi.shadowColor, opacity: isHovered ? 1 : 0.3 }}
                     />
                     <div
                       className="relative w-10 h-10 border border-black/20 flex items-center justify-center transition-colors duration-300"
                       style={{
-                        backgroundColor: isHovered ? t.color : "white",
+                        backgroundColor: isHovered ? testi.color : "white",
                       }}
                     >
                       <MessageCircle
                         size={16}
                         strokeWidth={2.5}
-                        style={{ color: isHovered ? "#fff" : t.color }}
+                        style={{ color: isHovered ? "#fff" : testi.color }}
                       />
                     </div>
                   </div>
@@ -124,28 +122,28 @@ export default function Temoignages() {
                   {/* Catégorie badge */}
                   <span
                     className="self-start text-[9px] font-black tracking-widest uppercase border px-2 py-0.5 mb-5"
-                    style={{ color: t.color, borderColor: t.color }}
+                    style={{ color: testi.color, borderColor: testi.color }}
                   >
-                    {t.category}
+                    {t(testi.categoryKey)}
                   </span>
 
                   {/* Citation */}
                   <p className="text-zinc-500 text-sm leading-relaxed flex-1 mb-7">
-                    « {t.quote} »
+                    « {t(testi.quoteKey)} »
                   </p>
 
                   {/* Auteur + stat */}
                   <div className="flex items-end justify-between border-t border-black/10 pt-4 gap-3">
                     <div>
-                      <p className="font-black text-black text-sm leading-tight">{t.name}</p>
-                      <p className="text-zinc-400 text-[11px] font-medium mt-0.5">{t.role}</p>
+                      <p className="font-black text-black text-sm leading-tight">{t(testi.nameKey)}</p>
+                      <p className="text-zinc-400 text-[11px] font-medium mt-0.5">{t(testi.roleKey)}</p>
                     </div>
                     <div className="text-right shrink-0">
-                      <p className="font-black text-2xl leading-none" style={{ color: t.color }}>
-                        {t.result}
+                      <p className="font-black text-2xl leading-none" style={{ color: testi.color }}>
+                        {testi.result}
                       </p>
                       <p className="text-zinc-400 text-[10px] font-medium mt-0.5 leading-tight max-w-[72px] text-right">
-                        {t.resultLabel}
+                        {t(testi.resultLabelKey)}
                       </p>
                     </div>
                   </div>
@@ -153,7 +151,7 @@ export default function Temoignages() {
                   {/* Barre bottom hover */}
                   <div
                     className="absolute bottom-0 left-0 h-[3px] transition-all duration-300"
-                    style={{ width: isHovered ? "100%" : "0%", backgroundColor: t.color }}
+                    style={{ width: isHovered ? "100%" : "0%", backgroundColor: testi.color }}
                   />
                 </div>
               );
@@ -164,7 +162,7 @@ export default function Temoignages() {
           <div className="border border-t-0 border-black/10 flex flex-col md:flex-row items-center justify-between px-6 py-4 gap-4">
             <p className="text-sm font-medium text-zinc-500">
               <span className="font-black text-black text-xl mr-2">100%</span>
-              des clients recommandent Conique
+              {t("testimonials.stats")}
             </p>
             <button
               className="group flex items-center gap-2 font-bold border border-black/20 px-5 py-2 text-sm text-white transition-all duration-200 hover:-translate-y-0.5"
@@ -176,7 +174,7 @@ export default function Temoignages() {
                 e.currentTarget.style.backgroundColor = GOLD;
               }}
             >
-              Démarrer un projet
+              {t("portfolio.cta_start")}
               <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </button>
           </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslation } from "react-i18next";
 import { ArrowRight, Mail, MessageSquare } from "lucide-react";
 
 const PURPLE = "#541ba6";
@@ -7,8 +8,10 @@ const BLUE   = "#1b89a6";
 const GOLD   = "#a68b1b";
 
 export default function CTA() {
+  const { t } = useTranslation();
+
   return (
-    <section className="relative bg-white py-24 overflow-hidden">
+    <section id="contact" className="relative bg-white py-24 overflow-hidden">
 
       {/* ── Lignes verticales ── */}
       <div className="absolute left-[60px] top-0 bottom-0 w-px bg-gray-200 z-10" />
@@ -107,23 +110,23 @@ export default function CTA() {
                     className="text-[10px] font-black tracking-[0.3em] uppercase mb-5"
                     style={{ color: BLUE }}
                   >
-                    On démarre quand vous voulez
+                    {t("cta.badge")}
                   </p>
                   <h2
                     className="font-black text-black leading-none tracking-tight"
                     style={{ fontSize: "clamp(2.4rem, 4.5vw, 4rem)" }}
                   >
-                    Un projet en tête ?<br />
-                    <span style={{ color: PURPLE }}>Parlons-en.</span>
+                    {t("cta.title")}<br />
+                    <span style={{ color: PURPLE }}>{t("cta.title_highlight")}</span>
                   </h2>
                 </div>
 
                 {/* Stats */}
                 <div className="grid grid-cols-3 border border-black/10">
                   {[
-                    { value: "3", label: "projets livrés" },
-                    { value: "4 sem.", label: "délai moyen" },
-                    { value: "100%", label: "satisfaction" },
+                    { value: "48", label: t("cta.stat1_label") },
+                    { value: t("cta.stat2_value"), label: t("cta.stat2_label") },
+                    { value: "100%", label: t("cta.stat3_label") },
                   ].map((s, i) => (
                     <div
                       key={i}
@@ -146,7 +149,7 @@ export default function CTA() {
               <div className="p-10 lg:p-14 flex flex-col justify-between gap-8">
 
                 <p className="text-zinc-500 text-base leading-relaxed max-w-sm">
-                  Que ce soit pour une identité visuelle, un redesign web, une stratégie de contenu ou des automatisations — on est là.
+                  {t("cta.desc")}
                 </p>
 
                 {/* CTAs */}
@@ -163,7 +166,7 @@ export default function CTA() {
                   >
                     <span className="flex items-center gap-3">
                       <Mail size={16} />
-                      Nous envoyer un message
+                      {t("cta.btn_message")}
                     </span>
                     <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
                   </button>
@@ -180,7 +183,7 @@ export default function CTA() {
                   >
                     <span className="flex items-center gap-3">
                       <MessageSquare size={16} />
-                      Réserver un appel découverte
+                      {t("cta.btn_call")}
                     </span>
                     <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
                   </button>
@@ -193,8 +196,8 @@ export default function CTA() {
                     style={{ backgroundColor: GOLD }}
                   />
                   <p className="text-zinc-500 text-xs font-medium">
-                    Disponible pour de nouveaux projets —{" "}
-                    <span className="font-black text-black">réponse sous 24h garantie</span>
+                    {t("cta.dispo_prefix")}{" "}
+                    <span className="font-black text-black">{t("cta.dispo_highlight")}</span>
                   </p>
                 </div>
 
@@ -205,17 +208,15 @@ export default function CTA() {
           {/* ── FOOTER STRIP ── */}
           <div className="border border-t-0 border-black/10 flex flex-col md:flex-row items-center justify-between px-6 py-4 gap-2">
             <div className="flex items-center gap-2.5">
-              <div
-                className="w-7 h-7 border border-black/20 flex items-center justify-center"
-                style={{ backgroundColor: PURPLE }}
-              >
-                <span className="text-white font-black text-xs">C</span>
-              </div>
-              <span className="font-black text-black text-sm tracking-tight">Conique</span>
-              <span className="text-zinc-300 text-sm">·</span>
-              <span className="text-zinc-400 text-xs font-medium">Design & Growth Studio</span>
+          <div className="flex items-center">
+            <img
+              src="/images/coniqueLogo1.png"
+              alt={t('logo.alt')}
+              className="h-10 w-auto object-contain"
+            />
+          </div>
             </div>
-            <p className="text-zinc-400 text-xs font-medium">© 2024 Conique. Tous droits réservés.</p>
+            <p className="text-zinc-400 text-xs font-medium">{t("cta.footer_rights")}</p>
           </div>
 
         </div>

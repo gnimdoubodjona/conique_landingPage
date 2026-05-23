@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslation } from "react-i18next";
 import {
   MessageSquare,
   Compass,
@@ -15,38 +16,36 @@ const steps = [
   {
     number: "01",
     icon: MessageSquare,
-    title: "Brief & Discovery",
-    description:
-      "On prend le temps de comprendre votre activité, vos objectifs et votre cible. Chaque projet commence par une écoute attentive.",
+    titleKey: "process.step1_title",
+    descriptionKey: "process.step1_desc",
     color: BLUE,
   },
   {
     number: "02",
     icon: Compass,
-    title: "Stratégie & Concept",
-    description:
-      "On définit la direction créative, le positionnement et les livrables. Rien n'est lancé sans une vision claire et validée ensemble.",
+    titleKey: "process.step2_title",
+    descriptionKey: "process.step2_desc",
     color: PURPLE,
   },
   {
     number: "03",
     icon: PenTool,
-    title: "Création & Itération",
-    description:
-      "On conçoit, on affine, on itère. Vous validez à chaque étape. Le résultat final est exactement ce que vous aviez imaginé — en mieux.",
+    titleKey: "process.step3_title",
+    descriptionKey: "process.step3_desc",
     color: GOLD,
   },
   {
     number: "04",
     icon: Rocket,
-    title: "Livraison & Suivi",
-    description:
-      "Livraison des fichiers, mise en ligne ou déploiement. On reste disponibles après pour assurer la continuité et le suivi.",
+    titleKey: "process.step4_title",
+    descriptionKey: "process.step4_desc",
     color: PURPLE,
   },
 ];
 
 export default function Processus() {
+  const { t } = useTranslation();
+
   return (
     <section className="relative bg-white py-24 overflow-hidden">
 
@@ -70,13 +69,12 @@ export default function Processus() {
                 className="font-black text-black leading-none tracking-tight"
                 style={{ fontSize: "clamp(2.6rem, 5vw, 4.5rem)" }}
               >
-                Un process qui délivre.
+                {t("process.title")}
               </h2>
             </div>
             <div className="flex-1 lg:pt-4 flex flex-col items-start lg:items-end gap-5">
               <p className="text-zinc-500 text-base leading-relaxed max-w-xs lg:text-right">
-                Brief · Stratégie · Création · Livraison —
-                chaque étape est pensée pour que votre projet arrive exactement où il doit être.
+                {t("process.desc")}
               </p>
               <div className="flex items-center gap-2">
                 <div
@@ -84,7 +82,7 @@ export default function Processus() {
                   style={{ backgroundColor: GOLD }}
                 />
                 <span className="text-zinc-500 text-sm font-medium">
-                  Disponible pour de nouveaux projets
+                  {t("process.status")}
                 </span>
               </div>
             </div>
@@ -121,17 +119,17 @@ export default function Processus() {
                     className="text-[11px] font-black tracking-[0.2em] uppercase mb-3"
                     style={{ color: step.color }}
                   >
-                    Étape {step.number}
+                    {t("process.step_label")} {step.number}
                   </p>
 
                   {/* Titre */}
                   <h3 className="font-black text-black text-lg leading-tight mb-3">
-                    {step.title}
+                    {t(step.titleKey)}
                   </h3>
 
                   {/* Description */}
                   <p className="text-zinc-500 text-sm leading-relaxed flex-1">
-                    {step.description}
+                    {t(step.descriptionKey)}
                   </p>
 
                   {/* Accent bottom — hover */}
@@ -147,8 +145,8 @@ export default function Processus() {
           {/* ── BOTTOM BAR ── */}
           <div className="border border-t-0 border-black/10 flex flex-col md:flex-row items-center justify-between px-6 py-4 gap-4">
             <p className="font-black text-black text-xl leading-tight max-w-sm">
-              De l'idée au résultat —{" "}
-              <span style={{ color: BLUE }}>en moyenne 2 à 4 semaines.</span>
+              {t("process.duration_prefix")}{" "}
+              <span style={{ color: BLUE }}>{t("process.duration_highlight")}</span>
             </p>
             <button
               className="group flex items-center gap-2 font-bold border border-black/20 px-5 py-2 text-sm transition-all duration-200 hover:-translate-y-0.5 text-white"
@@ -160,7 +158,7 @@ export default function Processus() {
                 e.currentTarget.style.backgroundColor = BLUE;
               }}
             >
-              Démarrer un projet
+              {t("portfolio.cta_start")}
             </button>
           </div>
 

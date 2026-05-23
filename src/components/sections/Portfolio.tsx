@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -13,53 +14,64 @@ const PURPLE = "#541ba6";
 const BLUE = "#1b89a6";
 const GOLD = "#a68b1b";
 
+type Project = {
+  id: string;
+  clientKey: string;
+  categoryKey: string;
+  year: string;
+  descriptionKey: string;
+  stat: string;
+  statLabelKey: string;
+  icon: any;
+  bubbleKey: string;
+  color: string;
+  colorLight: string;
+};
 
-const projects = [
+const projects: Project[] = [
   {
     id: "01",
-    client: "Maison Léa",
-    category: "Identité Visuelle",
+    clientKey: "portfolio.project1_client",
+    categoryKey: "portfolio.project1_category",
     year: "2024",
-    description: "Refonte complète de l'identité d'une marque de cosmétiques naturels. Palette, typographie et supports print/digital.",
+    descriptionKey: "portfolio.project1_desc",
     stat: "+3",
-    statLabel: "supports livrés",
-    bgImage: null as string | null,
+    statLabelKey: "portfolio.project1_statLabel",
     icon: Paintbrush,
-    bubble: "Charte livrée ✓",
+    bubbleKey: "portfolio.project1_bubble",
     color: GOLD,
     colorLight: "rgba(166,139,27,0.10)",
   },
   {
     id: "02",
-    client: "Korner Studio",
-    category: "Redesign Web",
+    clientKey: "portfolio.project2_client",
+    categoryKey: "portfolio.project2_category",
     year: "2024",
-    description: "Refonte du site vitrine d'un studio d'architecture. Focus sur la conversion et la mise en valeur des projets.",
+    descriptionKey: "portfolio.project2_desc",
     stat: "×2.4",
-    statLabel: "taux de contact",
-    bgImage: null as string | null,
+    statLabelKey: "portfolio.project2_statLabel",
     icon: MonitorSmartphone,
-    bubble: "Score Perf. 97 / 100",
+    bubbleKey: "portfolio.project2_bubble",
     color: BLUE,
     colorLight: "rgba(27,137,166,0.10)",
   },
   {
     id: "03",
-    client: "FoodRush",
-    category: "Community Mgmt",
+    clientKey: "portfolio.project3_client",
+    categoryKey: "portfolio.project3_category",
     year: "2023",
-    description: "Stratégie de contenu et animation de communauté pour une marque food. +12k abonnés en 4 mois.",
+    descriptionKey: "portfolio.project3_desc",
     stat: "+12k",
-    statLabel: "abonnés en 4 mois",
-    bgImage: null as string | null,
+    statLabelKey: "portfolio.project3_statLabel",
     icon: Users,
-    bubble: "Engagement +6.8%",
+    bubbleKey: "portfolio.project3_bubble",
     color: PURPLE,
     colorLight: "rgba(84,27,166,0.10)",
   },
 ];
 
-function ProjectCard({ project }: { project: (typeof projects)[0] }) {
+function ProjectCard({ project }: { project: Project }) {
+  const { t } = useTranslation();
   const [hovered, setHovered] = useState<boolean>(false);
   const Icon = project.icon;
 
@@ -97,7 +109,7 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
               : "translateX(-50%) translateY(10px)",
           }}
         >
-          <p className="text-xs font-bold text-black">{project.bubble}</p>
+          <p className="text-xs font-bold text-black">{t(project.bubbleKey)}</p>
         </div>
 
         {/* Icône brutalist */}
@@ -141,18 +153,18 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
           className="self-start text-[9px] font-black tracking-widest uppercase border px-2 py-0.5"
           style={{ color: project.color, borderColor: project.color }}
         >
-          {project.category}
+          {t(project.categoryKey)}
         </span>
 
-        <h3 className="font-black text-xl text-black leading-tight">{project.client}</h3>
+        <h3 className="font-black text-xl text-black leading-tight">{t(project.clientKey)}</h3>
 
-        <p className="text-zinc-500 text-sm leading-relaxed">{project.description}</p>
+        <p className="text-zinc-500 text-sm leading-relaxed">{t(project.descriptionKey)}</p>
 
         <div className="flex items-baseline gap-2 border-t border-black/10 pt-3 mt-auto">
           <span className="font-black text-3xl leading-none" style={{ color: project.color }}>
             {project.stat}
           </span>
-          <span className="text-[11px] text-zinc-400 font-medium">{project.statLabel}</span>
+          <span className="text-[11px] text-zinc-400 font-medium">{t(project.statLabelKey)}</span>
         </div>
       </div>
     </div>
@@ -160,8 +172,10 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
 }
 
 export default function Portfolio() {
+  const { t } = useTranslation();
+
   return (
-    <section className="relative bg-white py-20 overflow-hidden">
+    <section id="projets" className="relative bg-white py-20 overflow-hidden">
 
       {/* ── Lignes verticales — alignées avec hero et nav ── */}
       <div className="absolute left-[60px] top-0 bottom-0 w-px bg-gray-200 z-10" />
@@ -179,14 +193,13 @@ export default function Portfolio() {
           <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-8 mb-16">
             <div className="flex-1">
               <h2 className="font-black leading-none tracking-tight text-black text-5xl lg:text-6xl">
-                Nos Réalisations
+                {t("portfolio.title")}
               </h2>
             </div>
 
             <div className="flex-1 lg:pt-4 flex flex-col items-start lg:items-end gap-5">
               <p className="text-zinc-500 text-base leading-relaxed max-w-xs lg:text-right">
-                Identité visuelle · Redesign web · Community management —
-                chaque projet est une nouvelle histoire à raconter.
+                {t("portfolio.desc")}
               </p>
               <button
                 className="group flex items-center gap-2 font-bold px-5 py-2.5 border border-black/20 text-sm transition-all duration-200 hover:-translate-y-0.5"
@@ -198,7 +211,7 @@ export default function Portfolio() {
                   e.currentTarget.style.backgroundColor = BLUE;
                 }}
               >
-                Voir tous les projets
+                {t("portfolio.cta_all")}
                 <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
@@ -215,7 +228,7 @@ export default function Portfolio() {
           <div className="border border-t-0 border-black/10 flex flex-col md:flex-row items-center justify-between px-6 py-4 gap-4">
             <p className="text-sm font-medium text-zinc-500">
               <span className="font-black text-black text-xl mr-2">3</span>
-              projets livrés · et bien d'autres à venir
+              {t("portfolio.stats")}
             </p>
             <button
               className="group flex items-center gap-2 font-bold border border-black/20 px-5 py-2 text-sm transition-all duration-200 hover:-translate-y-0.5"
@@ -227,7 +240,7 @@ export default function Portfolio() {
                 e.currentTarget.style.backgroundColor = GOLD;
               }}
             >
-              Démarrer un projet
+              {t("portfolio.cta_start")}
               <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
